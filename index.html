@@ -39,16 +39,11 @@
 		function borrarFila() {
 			document.getElementById('miTabla').deleteRow(miTabla.rows.length-1)
 		};
-		function cambiarContenido(id, row, cell, content) {
-			var x = document.getElementById(id).rows[row].cells;
-			x[cell].innerHTML = content;
-		}
 	</script>
 </head>
 <body>
 	<input type="button" onclick="contarFila()" id="mi-boton" value="Contar filas" />
 	<p>
-		<input type="button" onclick="cambiarContenido('miTabla', 0, 0, 'Hello')" value="Cambiar dato">
 		<input type="button" onclick="insertarFila('miTabla')" value="Crear fila">
 		<input type="button" onclick="borrarFila()" value="Borrar Fila">
 	</p>
