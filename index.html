@@ -6,54 +6,55 @@
 	<title>JavaScript</title>
 	<link rel="stylesheet" href="">
 	<style type="text/css" media="screen">
-
 		table {
 			border-collapse: collapse;
-			/*width: 100%;*/
 		}
-
 		th, td {
 			text-align: left;
 			padding: 8px;
 		}
-
 		tr:nth-child(even){background-color: #f2f2f2}
-
 		th {
 			background-color: #4CAF50;
 			color: white;
 		}
 	</style>
 	<script>
-		function contarFila() {
-			var tam=miTabla.rows.length;
-			alert("Número de Filas: "+tam);
-		};
+		a = 0;
 		function insertarFila(id) {
-			var r = document.getElementById(id).insertRow(miTabla.rows.length);
-			var x = r.insertCell(0);
-			var y = r.insertCell(1);
-			var z = r.insertCell(2);
-			x.innerHTML = y.innerHTML = z.innerHTML = "New";
+			a++;
+			var tr = document.createElement('tr');
+			tr.innerHTML = '<td>ID Procucto '+a+': <input id="producto_'+a+'" name="producto_'+a+'" type="text"/></td><td>Cantidad: <input id="cantidad_'+a+'" name="cantidad_'+a+'" type="text"/></td>';
+			document.getElementById('miTabla').appendChild(tr);
 		};
 		function borrarFila() {
-			document.getElementById('miTabla').deleteRow(miTabla.rows.length-1)
+			a--;
+			document.getElementById('miTabla').deleteRow(miTabla.rows.length-1);
 		};
+		function funcionTotal() {
+			var total = 0;
+			// Sumatoria de cantidades para el total
+			for (var i = 1; i < a; i++) {
+				total = total + Number((document.formulario.cantidad_$i.value));
+			}
+			document.getElementById("total").innerHTML = "El total es: "+total;
+		}
 	</script>
 </head>
 <body>
-	<input type="button" onclick="contarFila()" id="mi-boton" value="Contar filas" />
 	<p>
-		<input type="button" onclick="insertarFila('miTabla')" value="Crear fila">
-		<input type="button" onclick="borrarFila()" value="Borrar Fila">
+		<input type="button" onclick="insertarFila('miTabla')" value="+">
+		<input type="button" onclick="borrarFila()" value="-">
 	</p>
-	<table id="miTabla">
-		<tr>
-			<th>Codigo Producto</th>
-			<th>Cantidad</th>
-			<th>Precio</th>
-		</tr>
-	</table>
-
+	<form name="formulario" accept-charset="utf-8">
+		<table id="miTabla">
+			<tr>
+				<th>Código Producto</th>
+				<th>Cantidad</th>
+			</tr>
+		</table>
+	</form>
+	<p><button onclick="funcionTotal()">Total</button></p>
+	<p id="total"></p>
 </body>
 </html>
