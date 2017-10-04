@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>JavaScript</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+
+		table {
+			border-collapse: collapse;
+			/*width: 100%;*/
+		}
+
+		th, td {
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even){background-color: #f2f2f2}
+
+		th {
+			background-color: #4CAF50;
+			color: white;
+		}
+	</style>
+	<script>
+		function contarFila() {
+			var tam=miTabla.rows.length;
+			alert("Número de Filas: "+tam);
+		};
+		function insertarFila(id) {
+			var r = document.getElementById(id).insertRow(miTabla.rows.length);
+			var x = r.insertCell(0);
+			var y = r.insertCell(1);
+			var z = r.insertCell(2);
+			x.innerHTML = y.innerHTML = z.innerHTML = "New";
+		};
+		function borrarFila() {
+			document.getElementById('miTabla').deleteRow(miTabla.rows.length-1)
+		};
+		function cambiarContenido(id, row, cell, content) {
+			var x = document.getElementById(id).rows[row].cells;
+			x[cell].innerHTML = content;
+		}
+	</script>
+</head>
+<body>
+	<input type="button" onclick="contarFila()" id="mi-boton" value="Contar filas" />
+	<p>
+		<input type="button" onclick="cambiarContenido('miTabla', 0, 0, 'Hello')" value="Cambiar dato">
+		<input type="button" onclick="insertarFila('miTabla')" value="Crear fila">
+		<input type="button" onclick="borrarFila()" value="Borrar Fila">
+	</p>
+	<table id="miTabla">
+		<tr>
+			<th>Codigo Producto</th>
+			<th>Cantidad</th>
+			<th>Precio</th>
+		</tr>
+		<tr>
+			<td>Jill</td>
+			<td>Smith</td>
+			<td>50</td>
+		</tr>
+		<tr>
+			<td>Eve</td>
+			<td>Jackson</td>
+			<td>94</td>
+		</tr>
+		<tr>
+			<td>John</td>
+			<td>Doe</td>
+			<td>80</td>
+		</tr>
+	</table>
+
+</body>
+</html>
