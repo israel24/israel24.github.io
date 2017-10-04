@@ -28,14 +28,13 @@
 			document.getElementById('miTabla').appendChild(tr);
 		};
 		function borrarFila() {
-			a--;
+			(a <= 0) ? a = 0 : a--;
 			document.getElementById('miTabla').deleteRow(miTabla.rows.length-1);
 		};
 		function funcionTotal() {
 			var total = 0;
-			// Sumatoria de cantidades para el total
-			for (var i = 1; i < a; i++) {
-				total = total + Number((document.formulario.cantidad_$i.value));
+			for (var i = 1; i < a+1; i++) {
+				total = total + Number(document.getElementById("cantidad_"+i).value);
 			}
 			document.getElementById("total").innerHTML = "El total es: "+total;
 		}
@@ -46,14 +45,12 @@
 		<input type="button" onclick="insertarFila('miTabla')" value="+">
 		<input type="button" onclick="borrarFila()" value="-">
 	</p>
-	<form name="formulario" accept-charset="utf-8">
-		<table id="miTabla">
-			<tr>
-				<th>Código Producto</th>
-				<th>Cantidad</th>
-			</tr>
-		</table>
-	</form>
+	<table id="miTabla">
+		<tr>
+			<th>Código Producto</th>
+			<th>Cantidad</th>
+		</tr>
+	</table>
 	<p><button onclick="funcionTotal()">Total</button></p>
 	<p id="total"></p>
 </body>
